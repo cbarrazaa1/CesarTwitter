@@ -49,10 +49,14 @@
                              }
                              else
                              {
-                                 NSLog(error.localizedDescription);
+                                 NSLog(@"Error at 'tweetClick::completion': %@", error.localizedDescription);
                              }
                          }
      ];
+}
+
+- (IBAction)closeClick:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*

@@ -105,23 +105,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" image="retweet-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Kw2-Yq-NJX">
-                                                    <rect key="frame" x="82" y="111" width="30" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </imageView>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" image="favor-icon" translatesAutoresizingMaskIntoConstraints="NO" id="APi-gf-t8R">
-                                                    <rect key="frame" x="206" y="111" width="30" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ixr-ab-MHm">
-                                                    <rect key="frame" x="115" y="116" width="18" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
-                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOz-eT-IAS">
-                                                    <rect key="frame" x="236" y="116" width="18" height="21"/>
+                                                    <rect key="frame" x="118" y="116" width="18" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -134,16 +119,39 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I1B-5b-itp">
+                                                    <rect key="frame" x="85" y="111" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="retweet-icon"/>
+                                                    <connections>
+                                                        <action selector="retweetClick:" destination="7aU-1J-q3T" eventType="touchUpInside" id="Pa2-U7-P2i"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y14-CS-epz">
+                                                    <rect key="frame" x="205" y="109" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="favor-icon"/>
+                                                    <connections>
+                                                        <action selector="favoriteClick:" destination="7aU-1J-q3T" eventType="touchUpInside" id="8p5-EG-1lr"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOz-eT-IAS">
+                                                    <rect key="frame" x="236" y="116" width="18" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
+                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="dateLabel" destination="CXl-lr-2sq" id="r9H-o1-Ybl"/>
-                                            <outlet property="favoriteImage" destination="APi-gf-t8R" id="Rch-eB-XCo"/>
+                                            <outlet property="favoriteButton" destination="y14-CS-epz" id="r4o-7B-qcz"/>
                                             <outlet property="favoriteLabel" destination="eOz-eT-IAS" id="slB-qY-V75"/>
                                             <outlet property="handleLabel" destination="hZu-bP-TDV" id="zle-Zt-Uby"/>
                                             <outlet property="nameLabel" destination="sYM-Ie-OuR" id="ROG-GE-JAA"/>
                                             <outlet property="profilePicture" destination="2KD-cC-YKq" id="ba0-wf-8e9"/>
-                                            <outlet property="retweetImage" destination="Kw2-Yq-NJX" id="z3p-Ns-RKE"/>
+                                            <outlet property="retweetButton" destination="I1B-5b-itp" id="5ce-o3-SxU"/>
                                             <outlet property="retweetLabel" destination="ixr-ab-MHm" id="XrC-gO-I2E"/>
                                             <outlet property="textContentLabel" destination="N9t-WG-fgZ" id="CgH-GW-nWX"/>
                                         </connections>
@@ -209,7 +217,11 @@
                         <viewLayoutGuide key="safeArea" id="K9k-08-9Wb"/>
                     </view>
                     <navigationItem key="navigationItem" id="L8K-x9-7Ah">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="close-icon" id="qRg-c9-d7b"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="close-icon" id="qRg-c9-d7b">
+                            <connections>
+                                <action selector="closeClick:" destination="eyc-q2-ieu" id="DG8-jr-7Xd"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Tweet" id="7xm-cD-QrX">
                             <connections>
                                 <action selector="tweetClick:" destination="eyc-q2-ieu" id="Rhs-xa-aks"/>

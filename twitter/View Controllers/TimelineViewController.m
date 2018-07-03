@@ -72,7 +72,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UINavigationController* navigationController = [segue destinationViewController];
-    ComposeViewController* viewController = navigationController.topViewController;
+    ComposeViewController* viewController = (ComposeViewController*)navigationController.topViewController;
     
     viewController.delegate = self;
     // TODO: segue current user info to compose

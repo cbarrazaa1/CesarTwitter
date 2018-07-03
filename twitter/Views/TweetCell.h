@@ -10,16 +10,6 @@
 #import "Tweet.h"
 
 @interface TweetCell : UITableViewCell
-// outlets
-@property (weak, nonatomic) IBOutlet UIImageView *profilePicture;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *handleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *textContentLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *retweetImage;
-@property (weak, nonatomic) IBOutlet UILabel *retweetLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *favoriteImage;
-@property (weak, nonatomic) IBOutlet UILabel *favoriteLabel;
 
 // instance properties
 @property (strong, nonatomic) Tweet* tweet;

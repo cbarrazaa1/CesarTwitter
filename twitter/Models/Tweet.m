@@ -30,8 +30,8 @@
         self.retweeted = [dictionary[@"retweeted"] boolValue];
         self.favorited = [dictionary[@"favorited"] boolValue];
         
-        self.retweetCount = dictionary[@"retweet_count"];
-        self.favoriteCount = dictionary[@"favorite_count"];
+        self.retweetCount = [dictionary[@"retweet_count"] intValue];
+        self.favoriteCount = [dictionary[@"favorite_count"] intValue];
         self.user = [[User alloc] initWithDictionary:dictionary[@"user"]];
         
         // format the date

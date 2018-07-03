@@ -18,8 +18,8 @@
 @property (strong, nonatomic) NSString* creationDate;
 @property (nonatomic) BOOL retweeted;
 @property (nonatomic) BOOL favorited;
-@property (strong, nonatomic) NSNumber* retweetCount;
-@property (strong, nonatomic) NSNumber* favoriteCount;
+@property (nonatomic) int retweetCount;
+@property (nonatomic) int favoriteCount;
 
 // Constructors
 - (instancetype)initWithDictionary:(NSDictionary*)dictionary;
