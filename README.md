@@ -10,7 +10,7 @@ The following **required** functionality is completed:
 
 - [X] User sees app icon in home screen and styled launch screen
 - [X] User can sign in using OAuth login flow
-- [ ] User can Logout
+- [X] User can Logout
 - [X] User can view last 20 tweets from their home timeline
 - [X] In the home timeline, user can view tweet with the user profile picture, username, tweet text, and timestamp.
 - [X] User can pull to refresh.

@@ -163,6 +163,11 @@
                         <viewLayoutGuide key="safeArea" id="ugE-Ul-H9I"/>
                     </view>
                     <navigationItem key="navigationItem" title="Home Timeline" id="MOc-fV-EZE">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="Ck3-Wb-Euz">
+                            <connections>
+                                <action selector="logoutClick:" destination="Lbl-k5-U4i" id="bLs-Pz-sy0"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="edit-icon" id="fgA-II-4py">
                             <inset key="largeContentSizeImageInsets" minX="1" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <connections>

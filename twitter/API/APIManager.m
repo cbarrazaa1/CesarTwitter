@@ -145,7 +145,6 @@ static NSString * const consumerSecret = @"RoMopDnGDjTBJlrGIFaml7YWiQRHevjAcWJZK
 
 - (void)unretweet:(Tweet *)tweet completion:(void (^)(Tweet *, NSError *))completion {
     NSString* urlWithID = [[@"1.1/statuses/unretweet/" stringByAppendingString:tweet.ID] stringByAppendingString:@".json"];
-    //NSString* url = @"1.1/statuses/unretweet.json";
     NSDictionary* parameters = @{@"id": tweet.ID};
     
     [self POST:urlWithID parameters:parameters progress:nil

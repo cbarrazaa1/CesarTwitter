@@ -12,6 +12,8 @@
 #import "TweetCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "ComposeViewController.h"
+#import "AppDelegate.h"
+#import "LoginViewController.h"
 
 @interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 // outlet definitions
@@ -102,4 +104,13 @@
     [self.tableView reloadData];
 }
 
+- (IBAction)logoutClick:(id)sender {
+    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LoginViewController* loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    appDelegate.window.rootViewController = loginViewController;
+    
+    // clear login tokens
+    [[APIManager shared] logout];
+}
 @end
