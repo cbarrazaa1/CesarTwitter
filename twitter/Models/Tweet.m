@@ -7,6 +7,7 @@
 //
 
 #import "Tweet.h"
+#import "NSDate+DateTools.h"
 
 @implementation Tweet
 - (instancetype)initWithDictionary:(NSDictionary*)dictionary {
@@ -44,12 +45,23 @@
         // convert string to date
         NSDate* date = [formatter dateFromString:originalDate];
         
-        // configure output format
-        formatter.dateStyle = NSDateFormatterShortStyle;
-        formatter.timeStyle = NSDateFormatterNoStyle;
+        // get possible date formats
+        NSString* shortDate = date.shortTimeAgoSinceNow;
+        NSString* longDate = [formatter stringFromDate:date];
+        char timeCharacter = [shortDate characterAtIndex:(shortDate.length - 1)];
         
-        // set the property
-        self.creationDate = [formatter stringFromDate:date];
+        // only use short date if we're talking about seconds, minutes or days
+        if(timeCharacter == 's' || timeCharacter == 'm' || timeCharacter == 'd')
+        {
+            self.creationDate = shortDate;
+        }
+        else
+        {
+            // configure output format
+            formatter.dateStyle = NSDateFormatterShortStyle;
+            formatter.timeStyle = NSDateFormatterNoStyle;
+            self.creationDate = longDate;
+        }
     }
     
     return self;
