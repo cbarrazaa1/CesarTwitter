@@ -25,6 +25,10 @@
 
     [self.composeTextfield becomeFirstResponder];
     
+    // set round image
+    self.profilePicture.layer.masksToBounds = YES;
+    self.profilePicture.layer.cornerRadius = (self.profilePicture.frame.size.width / 2);
+    
     // load UI
     [self.profilePicture setImageWithURL:self.url];
     self.nameLabel.text = self.name;

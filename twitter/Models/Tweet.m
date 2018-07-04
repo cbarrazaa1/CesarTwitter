@@ -47,11 +47,10 @@
         
         // get possible date formats
         NSString* shortDate = date.shortTimeAgoSinceNow;
-        NSString* longDate = [formatter stringFromDate:date];
         char timeCharacter = [shortDate characterAtIndex:(shortDate.length - 1)];
         
-        // only use short date if we're talking about seconds, minutes or days
-        if(timeCharacter == 's' || timeCharacter == 'm' || timeCharacter == 'd')
+        // only use short date if we're talking about seconds, minutes, hours or days
+        if(timeCharacter == 's' || timeCharacter == 'm' || timeCharacter == 'h' || timeCharacter == 'd')
         {
             self.creationDate = shortDate;
         }
@@ -60,7 +59,7 @@
             // configure output format
             formatter.dateStyle = NSDateFormatterShortStyle;
             formatter.timeStyle = NSDateFormatterNoStyle;
-            self.creationDate = longDate;
+            self.creationDate = [formatter stringFromDate:date];
         }
     }
     

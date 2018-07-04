@@ -88,23 +88,31 @@
     [self.retweetButton setTitle:[self reduceNumberWithSuffix:self.tweet.retweetCount] forState:UIControlStateNormal];
     [self.favoriteButton setTitle:[self reduceNumberWithSuffix:self.tweet.favoriteCount] forState:UIControlStateNormal];
 
-    // set images according to state
+    // set images and label colors according to state
     if(self.tweet.retweeted == YES)
     {
         [self.retweetButton setImage:[UIImage imageNamed:@"retweet-icon-green"] forState:UIControlStateNormal];
+        
+        // color hex: #00d084
+        [self.retweetButton setTitleColor:[UIColor colorWithRed:0/255.0 green:208/255.0 blue:132/255.0 alpha:255/255.0] forState:UIControlStateNormal];
     }
     else
     {
         [self.retweetButton setImage:[UIImage imageNamed:@"retweet-icon"] forState:UIControlStateNormal];
+        [self.retweetButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     }
     
     if(self.tweet.favorited == YES)
     {
         [self.favoriteButton setImage:[UIImage imageNamed:@"favor-icon-red"] forState:UIControlStateNormal];
+        
+        // color hex: #e5214a
+        [self.favoriteButton setTitleColor:[UIColor colorWithRed:229/255.0 green:33/255.0 blue:74/255.0 alpha:255/255.0] forState:UIControlStateNormal];
     }
     else
     {
         [self.favoriteButton setImage:[UIImage imageNamed:@"favor-icon"] forState:UIControlStateNormal];
+        [self.favoriteButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     }
     
     // load profile picture
@@ -127,6 +135,9 @@
             self.retweetButton.transform = CGAffineTransformIdentity;
         }];
     }];
+    
+    // provide haptic feedback
+    [[[UIImpactFeedbackGenerator alloc] init] impactOccurred];
     
     if(!self.tweet.retweeted)
     {
@@ -186,6 +197,9 @@
             self.favoriteButton.transform = CGAffineTransformIdentity;
         }];
     }];
+    
+    // provide haptic feedback
+    [[[UIImpactFeedbackGenerator alloc] init] impactOccurred];
     
     if(!self.tweet.favorited)
     {
