@@ -31,6 +31,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // get the current user
+    [[APIManager shared] getCurrentUser:^(User* user, NSError* error) {
+        if(error == nil)
+        {
+            APIManager* apiManager = [APIManager shared];
+            apiManager.currentUser = user;
+        }
+    }];
+    
     // setup tableview
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -79,8 +88,12 @@
     ComposeViewController* viewController = (ComposeViewController*)navigationController.topViewController;
     
     viewController.delegate = self;
-    // TODO: segue current user info to compose
-    //viewController.name =
+    
+    // setup compose view controller info
+    APIManager* apiManager = [APIManager shared];
+    viewController.name = apiManager.currentUser.name;
+    viewController.handle = apiManager.currentUser.handle;
+    viewController.url = apiManager.currentUser.profileImageURL;
 }
 
 

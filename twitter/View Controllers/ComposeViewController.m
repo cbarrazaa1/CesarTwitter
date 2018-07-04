@@ -25,12 +25,10 @@
 
     [self.composeTextfield becomeFirstResponder];
     
-    /* TODO
     // load UI
     [self.profilePicture setImageWithURL:self.url];
     self.nameLabel.text = self.name;
     self.handleLabel.text = self.handle;
-     */
 }
 
 - (void)didReceiveMemoryWarning {

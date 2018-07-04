@@ -36,13 +36,57 @@
     // Configure the view for the selected state
 }
 
+- (NSString*)reduceNumberWithSuffix:(int)number {
+    NSString* res = [NSString stringWithFormat:@"%i", number];
+    
+    // if greater than 1000, add a 'k' suffix
+    if(number > 1000)
+    {
+        // if greater than 1000000, add a 'm' suffix
+        if(number > 1000000)
+        {
+            res = [NSString stringWithFormat:@"%iM", number / 1000000];
+        }
+        else
+        {
+            // if it's less than 10000, add a thousand separator
+            if(number < 10000)
+            {
+                // get the hundreds portion
+                int hundreds = number - ((number / 1000) * 1000);
+                
+                // get the left signifcant digit of the hundred portion (since its the one we will use in the final output)
+                int leftSignificantDigit = hundreds / 100;
+                
+                // get the tens portion, which will be the one we will use to round
+                int tens = hundreds - leftSignificantDigit * 100;
+                
+                // if we are really close to the next hundred, then add one to the left significant digit
+                if(tens > 80)
+                {
+                    leftSignificantDigit++;
+                }
+
+                // arrange the output with the thousand separator
+                res = [NSString stringWithFormat:@"%i,%iK", number / 1000, leftSignificantDigit];
+            }
+            else
+            {
+                res = [NSString stringWithFormat:@"%iK", number / 1000];
+            }
+        }
+    }
+    
+    return res;
+}
+
 - (void)updateUI {
     self.nameLabel.text = self.tweet.user.name;
     self.handleLabel.text = [NSString stringWithFormat:@"@%@", self.tweet.user.handle];
     self.dateLabel.text = self.tweet.creationDate;
     self.textContentLabel.text = self.tweet.text;
-    [self.retweetButton setTitle:[NSString stringWithFormat:@"%i", self.tweet.retweetCount] forState:UIControlStateNormal];
-    [self.favoriteButton setTitle:[NSString stringWithFormat:@"%i", self.tweet.favoriteCount] forState:UIControlStateNormal];
+    [self.retweetButton setTitle:[self reduceNumberWithSuffix:self.tweet.retweetCount] forState:UIControlStateNormal];
+    [self.favoriteButton setTitle:[self reduceNumberWithSuffix:self.tweet.favoriteCount] forState:UIControlStateNormal];
 
     // set images according to state
     if(self.tweet.retweeted == YES)

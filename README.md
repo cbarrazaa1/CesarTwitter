@@ -43,7 +43,7 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
+- [X] Numbers in tweets (replies, favs, RTs) are formatted to having 'K' and 'M' suffixes, as well as thousands separator when in range of 1000-10000. (i.e. 3400 = 3,4K or 46312 = 46K)
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
