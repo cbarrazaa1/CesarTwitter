@@ -27,7 +27,9 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    // set round image
+    self.profilePicture.layer.masksToBounds = YES;
+    self.profilePicture.layer.cornerRadius = (self.profilePicture.frame.size.width / 2);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
