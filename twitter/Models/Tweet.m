@@ -26,26 +26,21 @@
         // set basic properties
         self.ID = dictionary[@"id_str"];
         self.text = dictionary[@"text"];
-        
-        // set bools (convert from nsnumber to actual bool)
         self.retweeted = [dictionary[@"retweeted"] boolValue];
         self.favorited = [dictionary[@"favorited"] boolValue];
-        
         self.retweetCount = [dictionary[@"retweet_count"] intValue];
         self.favoriteCount = [dictionary[@"favorite_count"] intValue];
         self.user = [[User alloc] initWithDictionary:dictionary[@"user"]];
-        
-        // format the date
         NSString* originalDate = dictionary[@"created_at"];
-        NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
         
         // configure the format that we are using right now
+        NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
         
-        // convert string to date
+        // convert string to date object
         NSDate* date = [formatter dateFromString:originalDate];
         
-        // get possible date formats
+        // get short date and the last character
         NSString* shortDate = date.shortTimeAgoSinceNow;
         char timeCharacter = [shortDate characterAtIndex:(shortDate.length - 1)];
         

@@ -10,10 +10,9 @@
 #import "Tweet.h"
 
 @interface TweetCell : UITableViewCell
-
-// instance properties
+// Instance Properties //
 @property (strong, nonatomic) Tweet* tweet;
 
-// instance methods
+// Instance Methods //
 - (void)setTweet:(Tweet*)tweet;
 @end

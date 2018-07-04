@@ -13,11 +13,13 @@
 
 @interface APIManager : BDBOAuth1SessionManager
 
-// Local user object
+// Local User Object //
 @property (strong, nonatomic) User* currentUser;
 
+// Constructors //
 + (instancetype)shared;
 
+// Instance Methods //
 - (void)getCurrentUser:(void(^)(User*, NSError*))completion;
 - (void)getHomeTimelineWithCompletion:(void(^)(NSArray *tweets, NSError *error))completion;
 - (void)composeTweetWith:(NSString*)text completion:(void(^)(Tweet*, NSError*))completion;

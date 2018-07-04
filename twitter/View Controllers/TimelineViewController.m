@@ -5,25 +5,24 @@
 //  Created by emersonmalca on 5/28/18.
 //  Copyright © 2018 Emerson Malca. All rights reserved.
 //
+#import <UIImageView+AFNetworking.h>
 
 #import "TimelineViewController.h"
-#import "APIManager.h"
-#import "Tweet.h"
-#import "TweetCell.h"
-#import "UIImageView+AFNetworking.h"
 #import "ComposeViewController.h"
-#import "AppDelegate.h"
 #import "LoginViewController.h"
+#import "TweetCell.h"
+#import "APIManager.h"
+#import "AppDelegate.h"
+#import "Tweet.h"
 
 @interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
-// outlet definitions
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+// Outlet Definitions //
+@property (weak, nonatomic) IBOutlet UITableView* tableView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView* activityIndicator;
 
-// instance properties
+// Instance properties //
 @property (strong, nonatomic) NSMutableArray<Tweet*>* tweets;
 @property (strong, nonatomic) UIRefreshControl* refreshControl;
-
 @end
 
 @implementation TimelineViewController
@@ -40,16 +39,16 @@
         }
     }];
     
-    // setup tableview
+    // set up tableview
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
-    // setup refreshcontrol
+    // set up refreshcontrol
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchTweets) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
     
-    // Get timeline
+    // get timeline
     [self.activityIndicator startAnimating];
     [self fetchTweets];
 }
@@ -73,20 +72,14 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-- (IBAction)composeClick:(id)sender {
-    
-}
-
 
 #pragma mark - Navigation
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UINavigationController* navigationController = [segue destinationViewController];
     ComposeViewController* viewController = (ComposeViewController*)navigationController.topViewController;
     
+    // set delegate to update tweet later
     viewController.delegate = self;
     
     // setup compose view controller info
@@ -96,12 +89,10 @@
     viewController.url = apiManager.currentUser.profileImageURL;
 }
 
-
-
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     TweetCell* cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell" forIndexPath:indexPath];
-    
     Tweet* tweet = self.tweets[indexPath.row];
+    
     if(tweet != nil)
     {
         [cell setTweet:tweet];
@@ -115,6 +106,7 @@
 }
 
 - (void)didTweet:(Tweet *)tweet {
+    // make sure it appears at the top
     [self.tweets insertObject:tweet atIndex:0];
     [self.tableView reloadData];
 }
@@ -123,6 +115,8 @@
     AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     LoginViewController* loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    
+    // reset all the app so that we are the beginning again
     appDelegate.window.rootViewController = loginViewController;
     
     // clear login tokens

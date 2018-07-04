@@ -9,13 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface User : NSObject
-// instance properties
+// Instance Properties //
 @property (strong, nonatomic) NSString* ID;
 @property (strong, nonatomic) NSString* name;
 @property (strong, nonatomic) NSString* handle;
 @property (strong, nonatomic) NSURL* profileImageURL;
 
-// Constuctors
+// Constuctors //
 - (instancetype)initWithDictionary:(NSDictionary*)dictionary;
-
 @end

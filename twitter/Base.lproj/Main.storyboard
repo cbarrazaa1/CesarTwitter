@@ -88,7 +88,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="@cbarraza" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZu-bP-TDV">
-                                                    <rect key="frame" x="181.5" y="19" width="69" height="17"/>
+                                                    <rect key="frame" x="182" y="19" width="69" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -105,30 +105,42 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cesar Barraza" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sYM-Ie-OuR">
-                                                    <rect key="frame" x="85" y="19" width="93.5" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Cesar Barraza" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sYM-Ie-OuR">
+                                                    <rect key="frame" x="85" y="19" width="94" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="y14-CS-epz">
-                                                    <rect key="frame" x="312" y="109" width="48" height="30"/>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y14-CS-epz">
+                                                    <rect key="frame" x="294" y="114" width="66" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="J6z-69-7Rc"/>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="48" id="Kqp-wX-bXO"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="48" id="a0R-qm-ooT"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
-                                                    <state key="normal" title="10" image="favor-icon">
+                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12"/>
+                                                    <state key="normal" title="10000" image="favor-icon">
                                                         <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="favoriteClick:" destination="7aU-1J-q3T" eventType="touchUpInside" id="8p5-EG-1lr"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I1B-5b-itp">
-                                                    <rect key="frame" x="192" y="109" width="48" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
-                                                    <state key="normal" title="10" image="retweet-icon">
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lGH-Ea-Cz6">
+                                                    <rect key="frame" x="78" y="114" width="66" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="49" id="p7P-eK-gy4"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12"/>
+                                                    <state key="normal" title="10000" image="reply-icon">
+                                                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I1B-5b-itp">
+                                                    <rect key="frame" x="173" y="114" width="106" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="48" id="VM0-zf-QOP"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12"/>
+                                                    <state key="normal" title="10000" image="retweet-icon">
                                                         <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                     <connections>
@@ -137,21 +149,27 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="y14-CS-epz" firstAttribute="top" secondItem="I1B-5b-itp" secondAttribute="top" id="3Hy-hL-qdk"/>
+                                                <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="y14-CS-epz" secondAttribute="trailing" constant="15" id="408-Ft-9pX"/>
+                                                <constraint firstItem="y14-CS-epz" firstAttribute="leading" secondItem="I1B-5b-itp" secondAttribute="trailing" constant="15" id="4If-IG-bdT"/>
+                                                <constraint firstItem="I1B-5b-itp" firstAttribute="top" secondItem="N9t-WG-fgZ" secondAttribute="bottom" constant="14" id="593-bE-gfD"/>
                                                 <constraint firstItem="sYM-Ie-OuR" firstAttribute="leading" secondItem="2KD-cC-YKq" secondAttribute="trailing" constant="11" id="5de-5U-BPh"/>
                                                 <constraint firstItem="hZu-bP-TDV" firstAttribute="leading" secondItem="sYM-Ie-OuR" secondAttribute="trailing" constant="3" id="8Cj-rI-V4h"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="y14-CS-epz" secondAttribute="trailing" id="D4i-vi-Ttt"/>
                                                 <constraint firstAttribute="trailing" secondItem="CXl-lr-2sq" secondAttribute="trailing" constant="7" id="GAl-nH-cG9"/>
                                                 <constraint firstItem="CXl-lr-2sq" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hZu-bP-TDV" secondAttribute="trailing" constant="8" id="HN5-vL-Zbj"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="lGH-Ea-Cz6" secondAttribute="bottom" constant="5" id="JLl-oB-yjX"/>
                                                 <constraint firstItem="N9t-WG-fgZ" firstAttribute="leading" secondItem="2KD-cC-YKq" secondAttribute="trailing" constant="11" id="Kwg-Iu-a9Q"/>
-                                                <constraint firstItem="I1B-5b-itp" firstAttribute="leading" secondItem="UxJ-xN-9aF" secondAttribute="leadingMargin" constant="177" id="M2F-dW-JPd"/>
                                                 <constraint firstItem="N9t-WG-fgZ" firstAttribute="top" secondItem="sYM-Ie-OuR" secondAttribute="bottom" constant="3" id="Wk6-Nc-Tzo"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="2KD-cC-YKq" secondAttribute="bottom" constant="10" id="YyT-XS-UnM"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="I1B-5b-itp" secondAttribute="bottom" constant="5" id="ZhN-m2-L6L"/>
+                                                <constraint firstItem="y14-CS-epz" firstAttribute="trailing" secondItem="UxJ-xN-9aF" secondAttribute="trailingMargin" id="ZvZ-r7-tJ6"/>
                                                 <constraint firstAttribute="trailing" secondItem="N9t-WG-fgZ" secondAttribute="trailing" constant="12" id="aam-4g-pAQ"/>
+                                                <constraint firstItem="I1B-5b-itp" firstAttribute="leading" secondItem="UxJ-xN-9aF" secondAttribute="leadingMargin" constant="158" id="b1k-Cn-ZrJ"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lGH-Ea-Cz6" secondAttribute="trailingMargin" id="cpv-8x-t4k"/>
                                                 <constraint firstItem="sYM-Ie-OuR" firstAttribute="top" secondItem="UxJ-xN-9aF" secondAttribute="topMargin" constant="8" id="dkj-Ny-sMu"/>
-                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="y14-CS-epz" secondAttribute="bottom" constant="5" id="g58-l6-aoc"/>
-                                                <constraint firstItem="y14-CS-epz" firstAttribute="top" secondItem="N9t-WG-fgZ" secondAttribute="bottom" constant="9" id="j13-nx-tga"/>
+                                                <constraint firstItem="y14-CS-epz" firstAttribute="top" secondItem="N9t-WG-fgZ" secondAttribute="bottom" constant="14" id="i46-ZH-UuG"/>
+                                                <constraint firstItem="lGH-Ea-Cz6" firstAttribute="top" secondItem="N9t-WG-fgZ" secondAttribute="bottom" constant="14" id="jdG-rU-Nav"/>
                                                 <constraint firstItem="hZu-bP-TDV" firstAttribute="baseline" secondItem="sYM-Ie-OuR" secondAttribute="baseline" id="lUm-Y1-FTK"/>
+                                                <constraint firstItem="lGH-Ea-Cz6" firstAttribute="leading" secondItem="UxJ-xN-9aF" secondAttribute="leadingMargin" constant="63" id="m8i-qe-Aua"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="y14-CS-epz" secondAttribute="bottom" constant="5" id="qNm-JZ-N3F"/>
                                                 <constraint firstItem="2KD-cC-YKq" firstAttribute="leading" secondItem="UxJ-xN-9aF" secondAttribute="leading" constant="10" id="qx8-kA-vop"/>
                                                 <constraint firstItem="CXl-lr-2sq" firstAttribute="baseline" secondItem="sYM-Ie-OuR" secondAttribute="baseline" id="t7J-Gj-she"/>
                                                 <constraint firstItem="2KD-cC-YKq" firstAttribute="top" secondItem="UxJ-xN-9aF" secondAttribute="top" constant="17" id="yrI-HW-fJa"/>
@@ -193,7 +211,6 @@
                         <barButtonItem key="rightBarButtonItem" title="Item" image="edit-icon" id="fgA-II-4py">
                             <inset key="largeContentSizeImageInsets" minX="1" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <connections>
-                                <action selector="composeClick:" destination="Lbl-k5-U4i" id="vLf-XO-aLu"/>
                                 <segue destination="DhU-J4-qPt" kind="presentation" id="82o-ha-rW9"/>
                             </connections>
                         </barButtonItem>
@@ -309,6 +326,7 @@
         <image name="close-icon" width="26" height="24"/>
         <image name="edit-icon" width="30" height="27"/>
         <image name="favor-icon" width="30" height="30"/>
+        <image name="reply-icon" width="30" height="30"/>
         <image name="retweet-icon" width="30" height="30"/>
     </resources>
 </document>

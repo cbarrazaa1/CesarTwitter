@@ -14,7 +14,7 @@
 @end
 
 @interface ComposeViewController : UIViewController
-// instance properties
+// Instance Properties //
 @property (strong, nonatomic) NSString* name;
 @property (strong, nonatomic) NSString* handle;
 @property (strong, nonatomic) NSURL* url;

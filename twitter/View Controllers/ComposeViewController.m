@@ -11,10 +11,11 @@
 #import "APIManager.h"
 
 @interface ComposeViewController ()
-@property (weak, nonatomic) IBOutlet UIImageView *profilePicture;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *handleLabel;
-@property (weak, nonatomic) IBOutlet UITextView *composeTextfield;
+// Outlet Definitions //
+@property (weak, nonatomic) IBOutlet UIImageView* profilePicture;
+@property (weak, nonatomic) IBOutlet UILabel* nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel* handleLabel;
+@property (weak, nonatomic) IBOutlet UITextView* composeTextfield;
 
 @end
 
@@ -22,14 +23,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
+    // show keyboard
     [self.composeTextfield becomeFirstResponder];
     
     // set round image
     self.profilePicture.layer.masksToBounds = YES;
     self.profilePicture.layer.cornerRadius = (self.profilePicture.frame.size.width / 2);
     
-    // load UI
+    // load UI with data
     [self.profilePicture setImageWithURL:self.url];
     self.nameLabel.text = self.name;
     self.handleLabel.text = self.handle;
@@ -37,7 +39,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)tweetClick:(id)sender {
@@ -46,6 +47,7 @@
                          {
                              if(error == nil)
                              {
+                                 // let the timeline VC handle the tweet post
                                  [self.delegate didTweet:tweet];
                                  [self dismissViewControllerAnimated:YES completion:nil];
                              }
@@ -60,15 +62,4 @@
 - (IBAction)closeClick:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

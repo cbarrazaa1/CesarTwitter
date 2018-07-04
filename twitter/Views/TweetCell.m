@@ -11,7 +11,7 @@
 #import "APIManager.h"
 
 @interface TweetCell ()
-// outlets
+// Outlet Definitions //
 @property (weak, nonatomic) IBOutlet UIImageView *profilePicture;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *handleLabel;
@@ -25,18 +25,18 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
     // set round image
     self.profilePicture.layer.masksToBounds = YES;
     self.profilePicture.layer.cornerRadius = (self.profilePicture.frame.size.width / 2);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    //[super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
 }
 
 - (NSString*)reduceNumberWithSuffix:(int)number {
+    // if none of the following conditions are true, just show the number normally
     NSString* res = [NSString stringWithFormat:@"%i", number];
     
     // if greater than 1000, add a 'k' suffix
@@ -55,20 +55,20 @@
                 // get the hundreds portion
                 int hundreds = number - ((number / 1000) * 1000);
                 
-                // get the left signifcant digit of the hundred portion (since its the one we will use in the final output)
-                int leftSignificantDigit = hundreds / 100;
+                // get the most-left digit of the hundreds portion (since it's the one we will display)
+                int mostLeftDigit = hundreds / 100;
                 
-                // get the tens portion, which will be the one we will use to round
-                int tens = hundreds - leftSignificantDigit * 100;
+                // get the tens portion, which will be the one we will use to check rounding
+                int tens = hundreds - mostLeftDigit * 100;
                 
-                // if we are really close to the next hundred, then add one to the left significant digit
+                // if we are really close to the next hundred, then add one to the most-left digit
                 if(tens > 80)
                 {
-                    leftSignificantDigit++;
+                    mostLeftDigit++;
                 }
 
                 // arrange the output with the thousand separator
-                res = [NSString stringWithFormat:@"%i,%iK", number / 1000, leftSignificantDigit];
+                res = [NSString stringWithFormat:@"%i,%iK", number / 1000, mostLeftDigit];
             }
             else
             {
@@ -81,10 +81,13 @@
 }
 
 - (void)updateUI {
+    // set basic UI controls
     self.nameLabel.text = self.tweet.user.name;
     self.handleLabel.text = [NSString stringWithFormat:@"@%@", self.tweet.user.handle];
     self.dateLabel.text = self.tweet.creationDate;
     self.textContentLabel.text = self.tweet.text;
+    
+    // set the RT and fav labels with a suffix if needed
     [self.retweetButton setTitle:[self reduceNumberWithSuffix:self.tweet.retweetCount] forState:UIControlStateNormal];
     [self.favoriteButton setTitle:[self reduceNumberWithSuffix:self.tweet.favoriteCount] forState:UIControlStateNormal];
 
@@ -139,6 +142,7 @@
     // provide haptic feedback
     [[[UIImpactFeedbackGenerator alloc] init] impactOccurred];
     
+    // handle the actual data of the retweet
     if(!self.tweet.retweeted)
     {
         // update local values
@@ -201,6 +205,7 @@
     // provide haptic feedback
     [[[UIImpactFeedbackGenerator alloc] init] impactOccurred];
     
+    // handle the data for the favorite
     if(!self.tweet.favorited)
     {
         // update local values
@@ -247,5 +252,4 @@
     // update the button images
     [self updateUI];
 }
-
 @end

@@ -10,7 +10,7 @@
 #import "User.h"
 
 @interface Tweet : NSObject
-// instance properties
+// Instance Properties //
 @property (strong, nonatomic) NSString* ID;
 @property (strong, nonatomic) NSString* text;
 @property (strong, nonatomic) User* user;
@@ -21,9 +21,9 @@
 @property (nonatomic) int retweetCount;
 @property (nonatomic) int favoriteCount;
 
-// Constructors
+// Constructors //
 - (instancetype)initWithDictionary:(NSDictionary*)dictionary;
 
-// Static methods
+// Static methods //
 + (NSMutableArray*)tweetsWithArray:(NSArray*)dictionaries;
 @end
