@@ -16,8 +16,8 @@ The following **required** functionality is completed:
 - [X] User can pull to refresh.
 - [X] User can tap the retweet and favorite buttons in a tweet cell to retweet and/or favorite a tweet.
 - [X] User can compose a new tweet by tapping on a compose button.
-- [ ] Using AutoLayout, the Tweet cell should adjust it's layout for iPhone 7, Plus and SE device sizes as well as accommodate device rotation.
-- [ ] The current signed in user will be persisted across restarts
+- [X] Using AutoLayout, the Tweet cell should adjust it's layout for iPhone 7, Plus and SE device sizes as well as accommodate device rotation.
+- [X] The current signed in user will be persisted across restarts
 
 The following **optional** features are implemented:
 
@@ -54,7 +54,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+![alt text](https://github.com/cbarrazaa1/CesarTwitter/blob/master/twitterv1.gif "Logo Title Text 1")
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
