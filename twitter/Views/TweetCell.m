@@ -17,8 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *handleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *textContentLabel;
-@property (weak, nonatomic) IBOutlet UILabel *retweetLabel;
-@property (weak, nonatomic) IBOutlet UILabel *favoriteLabel;
 @property (weak, nonatomic) IBOutlet UIButton *retweetButton;
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
 @end
@@ -43,9 +41,9 @@
     self.handleLabel.text = [NSString stringWithFormat:@"@%@", self.tweet.user.handle];
     self.dateLabel.text = self.tweet.creationDate;
     self.textContentLabel.text = self.tweet.text;
-    self.retweetLabel.text = [NSString stringWithFormat:@"%i", self.tweet.retweetCount];
-    self.favoriteLabel.text = [NSString stringWithFormat:@"%i", self.tweet.favoriteCount];
-    
+    [self.retweetButton setTitle:[NSString stringWithFormat:@"%i", self.tweet.retweetCount] forState:UIControlStateNormal];
+    [self.favoriteButton setTitle:[NSString stringWithFormat:@"%i", self.tweet.favoriteCount] forState:UIControlStateNormal];
+
     // set images according to state
     if(self.tweet.retweeted == YES)
     {
@@ -77,9 +75,11 @@
 - (IBAction)retweetClick:(id)sender {
     // animate the click
     [UIView animateWithDuration:0.1 animations:^{
+        // make it big
         self.retweetButton.transform = CGAffineTransformMakeScale(1.3, 1.3);
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.1 animations:^{
+            // make it back to normal
             self.retweetButton.transform = CGAffineTransformIdentity;
         }];
     }];
@@ -134,9 +134,11 @@
 - (IBAction)favoriteClick:(id)sender {
     // animate the click
     [UIView animateWithDuration:0.1 animations:^{
+        // make it big
         self.favoriteButton.transform = CGAffineTransformMakeScale(1.3, 1.3);
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.1 animations:^{
+            // back to normal
             self.favoriteButton.transform = CGAffineTransformIdentity;
         }];
     }];
