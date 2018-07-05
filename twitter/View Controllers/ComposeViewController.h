@@ -18,6 +18,8 @@
 @property (strong, nonatomic) NSString* name;
 @property (strong, nonatomic) NSString* handle;
 @property (strong, nonatomic) NSURL* url;
+@property (nonatomic) BOOL isCompose;
+@property (strong, nonatomic) Tweet* replyingTo;
 @property (weak, nonatomic) id<ComposeViewControllerDelegate> delegate;
 
 @end

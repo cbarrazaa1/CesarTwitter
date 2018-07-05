@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *textContentLabel;
 @property (weak, nonatomic) IBOutlet UIButton *retweetButton;
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
+@property (weak, nonatomic) IBOutlet UIButton *replyButton;
 @end
 
 @implementation TweetCell
@@ -251,5 +252,21 @@
     
     // update the button images
     [self updateUI];
+}
+
+- (IBAction)replyClick:(id)sender {
+    // animate the click
+    [UIView animateWithDuration:0.1 animations:^{
+        // make it big
+        self.replyButton.transform = CGAffineTransformMakeScale(1.3, 1.3);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.1 animations:^{
+            // back to normal
+            self.replyButton.transform = CGAffineTransformIdentity;
+        }];
+    }];
+    
+    // provide haptic feedback
+    [[[UIImpactFeedbackGenerator alloc] init] impactOccurred];
 }
 @end

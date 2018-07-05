@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UILabel* nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel* handleLabel;
 @property (weak, nonatomic) IBOutlet UITextView* composeTextfield;
+@property (weak, nonatomic) IBOutlet UILabel *replyLabel;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *topBarRightButton;
 
 @end
 
@@ -35,6 +37,18 @@
     [self.profilePicture setImageWithURL:self.url];
     self.nameLabel.text = self.name;
     self.handleLabel.text = self.handle;
+    
+    // change UI accordingly if we are composing or replying
+    if(self.isCompose)
+    {
+        self.replyLabel.text = @"";
+        [self.topBarRightButton setTitle:@"Tweet"];
+    }
+    else
+    {
+        self.replyLabel.text = [NSString stringWithFormat:@"Replying to @%@", self.replyingTo.user.handle];
+        [self.topBarRightButton setTitle:@"Reply"];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,21 +56,42 @@
 }
 
 - (IBAction)tweetClick:(id)sender {
-    [[APIManager shared] composeTweetWith:self.composeTextfield.text
-                         completion:^(Tweet* tweet, NSError* error)
-                         {
-                             if(error == nil)
+    if(self.isCompose)
+    {
+        [[APIManager shared] composeTweetWith:self.composeTextfield.text
+                             completion:^(Tweet* tweet, NSError* error)
                              {
-                                 // let the timeline VC handle the tweet post
-                                 [self.delegate didTweet:tweet];
-                                 [self dismissViewControllerAnimated:YES completion:nil];
+                                 if(error == nil)
+                                 {
+                                     // let the timeline VC handle the tweet post
+                                     [self.delegate didTweet:tweet];
+                                     [self dismissViewControllerAnimated:YES completion:nil];
+                                 }
+                                 else
+                                 {
+                                     NSLog(@"Error at 'composeTweetWith::completion': %@", error.localizedDescription);
+                                 }
                              }
-                             else
+         ];
+    }
+    else
+    {
+        [[APIManager shared] replyToTweet:self.replyingTo withText:self.composeTextfield.text
+                             completion:^(Tweet* tweet, NSError* error)
                              {
-                                 NSLog(@"Error at 'tweetClick::completion': %@", error.localizedDescription);
+                                 if(error == nil)
+                                 {
+                                     // let timeline VC handle the tweet post
+                                     [self.delegate didTweet:tweet];
+                                     [self dismissViewControllerAnimated:YES completion:nil];
+                                 }
+                                 else
+                                 {
+                                     NSLog(@"Error at 'replyToTweet::completion': %@", error.localizedDescription);
+                                 }
                              }
-                         }
-     ];
+         ];
+    }
 }
 
 - (IBAction)closeClick:(id)sender {

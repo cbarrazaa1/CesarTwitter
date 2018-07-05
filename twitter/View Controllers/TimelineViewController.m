@@ -78,15 +78,27 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UINavigationController* navigationController = [segue destinationViewController];
     ComposeViewController* viewController = (ComposeViewController*)navigationController.topViewController;
+    APIManager* apiManager = [APIManager shared];
+
+    // set viewcontroller info
+    viewController.name = apiManager.currentUser.name;
+    viewController.handle = apiManager.currentUser.handle;
+    viewController.url = apiManager.currentUser.profileImageURL;
     
     // set delegate to update tweet later
     viewController.delegate = self;
     
-    // setup compose view controller info
-    APIManager* apiManager = [APIManager shared];
-    viewController.name = apiManager.currentUser.name;
-    viewController.handle = apiManager.currentUser.handle;
-    viewController.url = apiManager.currentUser.profileImageURL;
+    if([segue.identifier isEqualToString:@"composeSegue"])
+    {
+        viewController.isCompose = YES;
+    }
+    else if([segue.identifier isEqualToString:@"replySegue"])
+    {
+        // get the cell using the sender (button). The button's superview is the contentview, and the contentview's superview is the cell.
+        TweetCell* cell = (TweetCell*)[[(UIButton*)sender superview] superview];
+        viewController.isCompose = NO;
+        viewController.replyingTo = cell.tweet;
+    }
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
