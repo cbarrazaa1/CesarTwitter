@@ -55,6 +55,10 @@
             formatter.dateStyle = NSDateFormatterShortStyle;
             formatter.timeStyle = NSDateFormatterNoStyle;
             self.creationDate = [formatter stringFromDate:date];
+            
+            // configure output format to show time
+            formatter.timeStyle = NSDateFormatterShortStyle;
+            self.creationDateWithTime = [formatter stringFromDate:date];
         }
     }
     

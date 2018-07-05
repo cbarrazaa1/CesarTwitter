@@ -16,6 +16,7 @@
 @property (strong, nonatomic) User* user;
 @property (strong, nonatomic) User* retweetedByUser;
 @property (strong, nonatomic) NSString* creationDate;
+@property (strong, nonatomic) NSString* creationDateWithTime;
 @property (nonatomic) BOOL retweeted;
 @property (nonatomic) BOOL favorited;
 @property (nonatomic) int retweetCount;

@@ -10,6 +10,7 @@
 #import "TimelineViewController.h"
 #import "ComposeViewController.h"
 #import "LoginViewController.h"
+#import "TweetDetailsViewController.h"
 #import "TweetCell.h"
 #import "APIManager.h"
 #import "AppDelegate.h"
@@ -76,28 +77,37 @@
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    UINavigationController* navigationController = [segue destinationViewController];
-    ComposeViewController* viewController = (ComposeViewController*)navigationController.topViewController;
-    APIManager* apiManager = [APIManager shared];
-
-    // set viewcontroller info
-    viewController.name = apiManager.currentUser.name;
-    viewController.handle = apiManager.currentUser.handle;
-    viewController.url = apiManager.currentUser.profileImageURL;
-    
-    // set delegate to update tweet later
-    viewController.delegate = self;
-    
-    if([segue.identifier isEqualToString:@"composeSegue"])
+    if([segue.identifier isEqualToString:@"comoseSegue"] || [segue.identifier isEqualToString:@"replySegue"])
     {
-        viewController.isCompose = YES;
+        UINavigationController* navigationController = [segue destinationViewController];
+        ComposeViewController* viewController = (ComposeViewController*)navigationController.topViewController;
+        APIManager* apiManager = [APIManager shared];
+        
+        // set viewcontroller info
+        viewController.name = apiManager.currentUser.name;
+        viewController.handle = apiManager.currentUser.handle;
+        viewController.url = apiManager.currentUser.profileImageURL;
+        
+        // set delegate to update tweet later
+        viewController.delegate = self;
+        
+        if([segue.identifier isEqualToString:@"composeSegue"])
+        {
+            viewController.isCompose = YES;
+        }
+        else if([segue.identifier isEqualToString:@"replySegue"])
+        {
+            // get the cell using the sender (button). The button's superview is the contentview, and the contentview's superview is the cell.
+            TweetCell* cell = (TweetCell*)[[(UIButton*)sender superview] superview];
+            viewController.isCompose = NO;
+            viewController.replyingTo = cell.tweet;
+        }
     }
-    else if([segue.identifier isEqualToString:@"replySegue"])
+    else if([segue.identifier isEqualToString:@"tweetDetailsSegue"])
     {
-        // get the cell using the sender (button). The button's superview is the contentview, and the contentview's superview is the cell.
-        TweetCell* cell = (TweetCell*)[[(UIButton*)sender superview] superview];
-        viewController.isCompose = NO;
-        viewController.replyingTo = cell.tweet;
+        TweetDetailsViewController* viewController = (TweetDetailsViewController*)[segue destinationViewController];
+        TweetCell* cell = (TweetCell*)sender;
+        [viewController setTweet:cell.tweet];
     }
 }
 
