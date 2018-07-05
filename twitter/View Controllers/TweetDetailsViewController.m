@@ -22,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *replyButton;
 @property (weak, nonatomic) IBOutlet UIButton *retweetButton;
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
+@property (weak, nonatomic) IBOutlet UILabel *retweetLabel;
+@property (weak, nonatomic) IBOutlet UILabel *favoriteLabel;
 @end
 
 @implementation TweetDetailsViewController
@@ -36,7 +38,6 @@
     self.retweetCountLabel.text = [NSString stringWithFormat:@"%i", self.tweet.retweetCount];
     self.favoriteCountLabel.text = [NSString stringWithFormat:@"%i", self.tweet.favoriteCount];
     
-    // set retweet and favorite images
     // set images according to state
     if(self.tweet.retweeted == YES)
     {
@@ -55,6 +56,35 @@
     {
         [self.favoriteButton setImage:[UIImage imageNamed:@"favor-icon"] forState:UIControlStateNormal];
     }
+    
+    // change retweet and favorite labels according to quantity
+    if(self.tweet.retweetCount == 1)
+    {
+        [self.retweetLabel setText:@"RETWEET"];
+    }
+    else if(self.tweet.retweetCount == 0)
+    {
+        [self.retweetCountLabel setText:@""];
+        [self.retweetLabel setText:@""];
+    }
+    else
+    {
+        [self.retweetLabel setText:@"RETWEETS"];
+    }
+    
+    if (self.tweet.favoriteCount == 1)
+    {
+        [self.favoriteLabel setText:@"LIKE"];
+    }
+    else if(self.tweet.favoriteCount == 0)
+    {
+        [self.favoriteCountLabel setText:@""];
+        [self.favoriteLabel setText:@""];
+    }
+    else
+    {
+        [self.favoriteLabel setText:@"LIKES"];
+    }
 }
 
 - (void)setTweet:(Tweet *)tweet {
@@ -63,6 +93,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // set round image
+    self.profilePicture.layer.masksToBounds = YES;
+    self.profilePicture.layer.cornerRadius = (self.profilePicture.frame.size.width / 2);
+    
     [self updateUI];
 }
 

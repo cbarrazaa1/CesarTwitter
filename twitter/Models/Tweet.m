@@ -36,7 +36,7 @@
         // configure the format that we are using right now
         NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
-        
+
         // convert string to date object
         NSDate* date = [formatter dateFromString:originalDate];
         
@@ -55,11 +55,12 @@
             formatter.dateStyle = NSDateFormatterShortStyle;
             formatter.timeStyle = NSDateFormatterNoStyle;
             self.creationDate = [formatter stringFromDate:date];
-            
-            // configure output format to show time
-            formatter.timeStyle = NSDateFormatterShortStyle;
-            self.creationDateWithTime = [formatter stringFromDate:date];
         }
+        
+        // configure output format to show time
+        formatter.dateStyle = NSDateFormatterShortStyle;
+        formatter.timeStyle = NSDateFormatterShortStyle;
+        self.creationDateWithTime = [formatter stringFromDate:date];
     }
     
     return self;

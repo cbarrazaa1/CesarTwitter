@@ -77,7 +77,7 @@
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqualToString:@"comoseSegue"] || [segue.identifier isEqualToString:@"replySegue"])
+    if([segue.identifier isEqualToString:@"composeSegue"] || [segue.identifier isEqualToString:@"replySegue"])
     {
         UINavigationController* navigationController = [segue destinationViewController];
         ComposeViewController* viewController = (ComposeViewController*)navigationController.topViewController;
