@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
 @property (weak, nonatomic) IBOutlet UILabel *retweetLabel;
 @property (weak, nonatomic) IBOutlet UILabel *favoriteLabel;
+
 @end
 
 @implementation TweetDetailsViewController
@@ -110,6 +111,8 @@
     UINavigationController* navigationController = [segue destinationViewController];
     ComposeViewController* viewController = (ComposeViewController*)navigationController.topViewController;
     
+    // pass the timeline delegate
+    viewController.delegate = self.timelineDelegate;
     viewController.isCompose = NO;
     viewController.name = self.tweet.user.name;
     viewController.handle = self.tweet.user.handle;
@@ -144,16 +147,21 @@
         // process the network call
         [[APIManager shared] retweet:self.tweet
                           completion:^(Tweet* tweet, NSError* error)
-         {
-             // if we had an error, revert local changes
-             if(error != nil)
-             {
-                 self.tweet.retweeted = NO;
-                 self.tweet.retweetCount--;
-                 [self updateUI];
-                 NSLog(@"Error at 'retweet::completion': %@", error.localizedDescription);
-             }
-         }
+                          {
+                             // if we had an error, revert local changes
+                             if(error != nil)
+                             {
+                                 self.tweet.retweeted = NO;
+                                 self.tweet.retweetCount--;
+                                 [self updateUI];
+                                 NSLog(@"Error at 'retweet::completion': %@", error.localizedDescription);
+                             }
+                             else
+                             {
+                                 // trigger the cell's delegate
+                                 [self.delegate didModifyTweet:self.tweet];
+                             }
+                         }
          ];
     }
     else
@@ -165,16 +173,21 @@
         // process the network call
         [[APIManager shared] unretweet:self.tweet
                             completion:^(Tweet* tweet, NSError* error)
-         {
-             // if we had an error, revert local changes
-             if(error != nil)
-             {
-                 self.tweet.retweeted = YES;
-                 self.tweet.retweetCount++;
-                 [self updateUI];
-                 NSLog(@"Error at 'unretweet::completion': %@", error.localizedDescription);
-             }
-         }
+                            {
+                                // if we had an error, revert local changes
+                                if(error != nil)
+                                {
+                                    self.tweet.retweeted = YES;
+                                    self.tweet.retweetCount++;
+                                    [self updateUI];
+                                    NSLog(@"Error at 'unretweet::completion': %@", error.localizedDescription);
+                                }
+                                else
+                                {
+                                    // trigger the cell's delegate
+                                    [self.delegate didModifyTweet:self.tweet];
+                                }
+                            }
          ];
     }
     
@@ -209,16 +222,21 @@
         // process the network call
         [[APIManager shared] favoriteTweet:self.tweet
                                 completion:^(Tweet* tweet, NSError* error)
-         {
-             // if we had an error, then revert our local changes
-             if(error != nil)
-             {
-                 self.tweet.favorited = NO;
-                 self.tweet.favoriteCount--;
-                 [self updateUI];
-                 NSLog(@"Error at 'favoriteTweet::completion': %@", error.localizedDescription);
-             }
-         }
+                                {
+                                    // if we had an error, then revert our local changes
+                                    if(error != nil)
+                                    {
+                                        self.tweet.favorited = NO;
+                                        self.tweet.favoriteCount--;
+                                        [self updateUI];
+                                        NSLog(@"Error at 'favoriteTweet::completion': %@", error.localizedDescription);
+                                    }
+                                    else
+                                    {
+                                        // trigger the cell's delegate
+                                        [self.delegate didModifyTweet:self.tweet];
+                                    }
+                                }
          ];
     }
     else
@@ -230,16 +248,21 @@
         // process the network call
         [[APIManager shared] unfavoriteTweet:self.tweet
                                   completion:^(Tweet* tweet, NSError* error)
-         {
-             // if we had an error, then revert our local changes
-             if(error != nil)
-             {
-                 self.tweet.favorited = YES;
-                 self.tweet.favoriteCount++;
-                 [self updateUI];
-                 NSLog(@"Error at 'unfavoriteTweet::completion': %@", error.localizedDescription);
-             }
-         }
+                                  {
+                                      // if we had an error, then revert our local changes
+                                      if(error != nil)
+                                      {
+                                          self.tweet.favorited = YES;
+                                          self.tweet.favoriteCount++;
+                                          [self updateUI];
+                                          NSLog(@"Error at 'unfavoriteTweet::completion': %@", error.localizedDescription);
+                                      }
+                                      else
+                                      {
+                                          // trigger the cell's delegate
+                                          [self.delegate didModifyTweet:self.tweet];
+                                      }
+                                  }
          ];
     }
     

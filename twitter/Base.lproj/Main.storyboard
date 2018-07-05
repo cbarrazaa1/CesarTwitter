@@ -323,7 +323,7 @@
                                                 <color key="backgroundColor" white="0.96133289730000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HuY-Gh-X3u">
-                                                <rect key="frame" x="61" y="242" width="30" height="30"/>
+                                                <rect key="frame" x="62" y="242" width="30" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="30" id="F2D-RO-luu"/>
                                                 </constraints>
@@ -334,7 +334,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEq-Ph-EPO">
-                                                <rect key="frame" x="172" y="242" width="30" height="30"/>
+                                                <rect key="frame" x="173" y="242" width="29" height="30"/>
                                                 <state key="normal" image="retweet-icon"/>
                                                 <connections>
                                                     <action selector="retweetClick:" destination="wIh-nC-ID2" eventType="touchUpInside" id="cVz-KI-1TH"/>
@@ -367,7 +367,7 @@
                                             <constraint firstItem="nug-Ha-7E7" firstAttribute="leading" secondItem="wfi-Al-02q" secondAttribute="leading" constant="12" id="AFe-G7-DZq"/>
                                             <constraint firstItem="n2a-sD-oB0" firstAttribute="top" secondItem="gEq-Ph-EPO" secondAttribute="bottom" constant="4" id="Ayo-aW-c49"/>
                                             <constraint firstItem="uYG-Rg-Kq1" firstAttribute="top" secondItem="nHV-nh-LvZ" secondAttribute="bottom" id="GcT-yj-iO4"/>
-                                            <constraint firstItem="HuY-Gh-X3u" firstAttribute="leading" secondItem="wfi-Al-02q" secondAttribute="leading" constant="61" id="Hmg-Qi-2zq"/>
+                                            <constraint firstItem="HuY-Gh-X3u" firstAttribute="leading" secondItem="wfi-Al-02q" secondAttribute="leading" constant="62" id="Hmg-Qi-2zq"/>
                                             <constraint firstAttribute="trailing" secondItem="Why-Y0-AQh" secondAttribute="trailing" constant="16" id="Idw-3W-PTV"/>
                                             <constraint firstItem="Why-Y0-AQh" firstAttribute="leading" secondItem="wfi-Al-02q" secondAttribute="leading" constant="12" id="Ied-kV-Y8m"/>
                                             <constraint firstItem="Hwv-O2-oJb" firstAttribute="top" secondItem="n2a-sD-oB0" secondAttribute="bottom" id="KEr-p2-lah"/>

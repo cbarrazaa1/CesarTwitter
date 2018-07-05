@@ -9,8 +9,9 @@
 #import "TweetCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "APIManager.h"
+#import "TweetDetailsViewController.h"
 
-@interface TweetCell ()
+@interface TweetCell () <TweetDetailsViewControllerDelegate>
 // Outlet Definitions //
 @property (weak, nonatomic) IBOutlet UIImageView *profilePicture;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -268,5 +269,10 @@
     
     // provide haptic feedback
     [[[UIImpactFeedbackGenerator alloc] init] impactOccurred];
+}
+
+- (void)didModifyTweet:(Tweet *)tweet {
+    self.tweet = tweet;
+    [self updateUI];
 }
 @end

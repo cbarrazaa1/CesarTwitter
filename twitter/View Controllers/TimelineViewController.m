@@ -107,6 +107,8 @@
     {
         TweetDetailsViewController* viewController = (TweetDetailsViewController*)[segue destinationViewController];
         TweetCell* cell = (TweetCell*)sender;
+        viewController.delegate = sender;
+        viewController.timelineDelegate = self;
         [viewController setTweet:cell.tweet];
     }
 }

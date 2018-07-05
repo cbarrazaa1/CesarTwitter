@@ -8,10 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "Tweet.h"
+#import "ComposeViewController.h"
+
+@protocol TweetDetailsViewControllerDelegate
+- (void)didModifyTweet:(Tweet*)tweet;
+@end
 
 @interface TweetDetailsViewController : UIViewController
 // Instance Properties //
 @property (strong, nonatomic) Tweet* tweet;
+@property (weak, nonatomic) id<TweetDetailsViewControllerDelegate> delegate;
+@property (weak, nonatomic) id<ComposeViewControllerDelegate> timelineDelegate;
 
 // Instance Methods //
 - (void)setTweet:(Tweet *)tweet;
