@@ -33,13 +33,7 @@
     [super viewDidLoad];
     
     // get the current user
-    [[APIManager shared] getCurrentUser:^(User* user, NSError* error) {
-        if(error == nil)
-        {
-            APIManager* apiManager = [APIManager shared];
-            apiManager.currentUser = user;
-        }
-    }];
+    [[APIManager shared] getCurrentUser];
     
     // set up tableview
     self.tableView.dataSource = self;
@@ -111,12 +105,6 @@
         viewController.delegate = sender;
         viewController.timelineDelegate = self;
         [viewController setTweet:cell.tweet];
-    }
-    else if([segue.identifier isEqualToString:@"profileSegue"])
-    {
-        ProfileViewController* viewController = (ProfileViewController*)[segue destinationViewController];
-        User* user = [[APIManager shared] currentUser];
-        viewController.user = user;
     }
 }
 

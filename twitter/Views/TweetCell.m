@@ -10,6 +10,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "APIManager.h"
 #import "TweetDetailsViewController.h"
+#import "ProfileViewController.h"
 
 @interface TweetCell () <TweetDetailsViewControllerDelegate>
 // Outlet Definitions //
@@ -163,6 +164,10 @@
                                     [self updateUI];
                                     NSLog(@"Error at 'retweet::completion': %@", error.localizedDescription);
                                 }
+                                else
+                                {
+                                    
+                                }
                              }
          ];
     }
@@ -183,6 +188,10 @@
                                      self.tweet.retweetCount++;
                                      [self updateUI];
                                      NSLog(@"Error at 'unretweet::completion': %@", error.localizedDescription);
+                                 }
+                                 else
+                                 {
+                                     
                                  }
                              }
          ];
@@ -271,7 +280,7 @@
     [[[UIImpactFeedbackGenerator alloc] init] impactOccurred];
 }
 
-- (void)didModifyTweet:(Tweet *)tweet {
+- (void)didModifyTweet:(Tweet*)tweet {
     self.tweet = tweet;
     [self updateUI];
 }

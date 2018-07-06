@@ -113,6 +113,8 @@
     
     // pass the timeline delegate
     viewController.delegate = self.timelineDelegate;
+    
+    // pass the rest of the info
     viewController.isCompose = NO;
     viewController.name = self.tweet.user.name;
     viewController.handle = self.tweet.user.handle;

@@ -7,12 +7,13 @@
 //
 
 #import "ProfileViewController.h"
+#import "ComposeViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "Tweet.h"
 #import "TweetCell.h"
 #import "APIManager.h"
 
-@interface ProfileViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface ProfileViewController () <ComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 // Outlet Definitions //
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
@@ -29,6 +30,7 @@
 
 // Instance Properties //
 @property (strong, nonatomic) NSMutableArray<Tweet*>* tweets;
+@property (strong, nonatomic) User* user;
 
 @end
 
@@ -46,6 +48,10 @@
     // set profile picture border
     self.profileImage.layer.borderWidth = 2;
     self.profileImage.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    // set round image
+    self.profileImage.layer.masksToBounds = YES;
+    self.profileImage.layer.cornerRadius = (self.profileImage.frame.size.width / 2);
     
     // set pictures
     [self.backgroundImage setImageWithURL:self.user.backgroundImageURL];
@@ -79,6 +85,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // update user object
+    [[APIManager shared] getCurrentUser];
+    self.user = [[APIManager shared] currentUser];
+   
+    // update UI
     [self updateUI];
     
     // set up tableview
@@ -92,15 +103,19 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    UINavigationController* navigationController = [segue destinationViewController];
+    ComposeViewController* viewController = (ComposeViewController*)navigationController.topViewController;
+    
+    viewController.delegate = self;
+    
+    // get the cell using the sender (button). The button's superview is the contentview, and the contentview's superview is the cell.
+    TweetCell* cell = (TweetCell*)[[sender superview] superview];
+    viewController.isCompose = NO;
+    viewController.replyingTo = cell.tweet;
 }
-*/
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     TweetCell* cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell" forIndexPath:indexPath];
@@ -117,4 +132,10 @@
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.tweets.count;
 }
+
+- (void)didTweet:(Tweet *)tweet {
+    [self.tweets insertObject:tweet atIndex:0];
+    [self.tableView reloadData];
+}
+
 @end

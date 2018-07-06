@@ -47,7 +47,7 @@ static NSString * const consumerSecret = @"RoMopDnGDjTBJlrGIFaml7YWiQRHevjAcWJZK
     return self;
 }
 
-- (void)getCurrentUser:(void (^)(User *, NSError *))completion {
+- (void)getCurrentUser {
     NSString* url = @"1.1/account/verify_credentials.json";
     NSDictionary* parameters = nil;
     
@@ -55,11 +55,11 @@ static NSString * const consumerSecret = @"RoMopDnGDjTBJlrGIFaml7YWiQRHevjAcWJZK
                   success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
                   {
                       User* user = [[User alloc] initWithDictionary:(NSDictionary*)responseObject];
-                      completion(user, nil);
+                      self.currentUser = user;
                   }
                   failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
                   {
-                      completion(nil, error);
+                      NSLog(@"Error at 'getCurrentUser': %@", error.localizedDescription);
                   }
      ];
 }
@@ -78,6 +78,23 @@ static NSString * const consumerSecret = @"RoMopDnGDjTBJlrGIFaml7YWiQRHevjAcWJZK
 - (void)getUserTimeline:(User *)user completion:(void (^)(NSArray<Tweet*>*, NSError *))completion {
     NSString* url = @"1.1/statuses/user_timeline.json";
     NSDictionary* parameters = @{@"user_id": user.ID, @"screen_name": user.handle};
+    
+    [self GET:url parameters:parameters progress:nil
+          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+          {
+              NSMutableArray<Tweet*>* tweets = [Tweet tweetsWithArray:(NSArray*)responseObject];
+              completion(tweets, nil);
+          }
+          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+          {
+              completion(nil, error);
+          }
+     ];
+}
+
+- (void)getMentions:(void (^)(NSArray<Tweet *> *, NSError *))completion {
+    NSString* url = @"1.1/statuses/mentions_timeline.json";
+    NSDictionary* parameters = nil;
     
     [self GET:url parameters:parameters progress:nil
           success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)

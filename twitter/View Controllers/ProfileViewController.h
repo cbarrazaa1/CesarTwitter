@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
+#import "ComposeViewController.h"
 
 @interface ProfileViewController : UIViewController
-@property (strong, nonatomic) User* user;
+
 @end
