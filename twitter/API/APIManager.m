@@ -65,7 +65,6 @@ static NSString * const consumerSecret = @"RoMopDnGDjTBJlrGIFaml7YWiQRHevjAcWJZK
 }
 
 - (void)getHomeTimelineWithCompletion:(void(^)(NSArray *tweets, NSError *error))completion {
-    
     [self GET:@"1.1/statuses/home_timeline.json"
    parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSArray *  _Nullable tweetDictionaries) {
        NSMutableArray* tweets = [Tweet tweetsWithArray:tweetDictionaries];
@@ -74,6 +73,23 @@ static NSString * const consumerSecret = @"RoMopDnGDjTBJlrGIFaml7YWiQRHevjAcWJZK
    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
        completion(nil, error);
    }];
+}
+
+- (void)getUserTimeline:(User *)user completion:(void (^)(NSArray<Tweet*>*, NSError *))completion {
+    NSString* url = @"1.1/statuses/user_timeline.json";
+    NSDictionary* parameters = @{@"user_id": user.ID, @"screen_name": user.handle};
+    
+    [self GET:url parameters:parameters progress:nil
+          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+          {
+              NSMutableArray<Tweet*>* tweets = [Tweet tweetsWithArray:(NSArray*)responseObject];
+              completion(tweets, nil);
+          }
+          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+          {
+              completion(nil, error);
+          }
+     ];
 }
 
 - (void)composeTweetWith:(NSString *)text completion:(void (^)(Tweet *, NSError *))completion {

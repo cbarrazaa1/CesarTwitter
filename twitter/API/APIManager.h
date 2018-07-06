@@ -22,6 +22,7 @@
 // Instance Methods //
 - (void)getCurrentUser:(void(^)(User*, NSError*))completion;
 - (void)getHomeTimelineWithCompletion:(void(^)(NSArray *tweets, NSError *error))completion;
+- (void)getUserTimeline:(User*)user completion:(void(^)(NSArray<Tweet*>*, NSError*))completion;
 - (void)composeTweetWith:(NSString*)text completion:(void(^)(Tweet*, NSError*))completion;
 - (void)favoriteTweet:(Tweet*)tweet completion:(void(^)(Tweet*, NSError*))completion;
 - (void)unfavoriteTweet:(Tweet*)tweet completion:(void(^)(Tweet*, NSError*))completion;

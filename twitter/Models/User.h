@@ -14,6 +14,10 @@
 @property (strong, nonatomic) NSString* name;
 @property (strong, nonatomic) NSString* handle;
 @property (strong, nonatomic) NSURL* profileImageURL;
+@property (strong, nonatomic) NSURL* backgroundImageURL;
+@property (nonatomic) int tweetsCount;
+@property (nonatomic) int followingCount;
+@property (nonatomic) int followersCount;
 
 // Constuctors //
 - (instancetype)initWithDictionary:(NSDictionary*)dictionary;

@@ -22,6 +22,7 @@
 		9EA1CE0E20EAD1C000C88212 /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EA1CE0D20EAD1C000C88212 /* TweetCell.m */; };
 		9EA1CE1120EAF46A00C88212 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EA1CE1020EAF46A00C88212 /* ComposeViewController.m */; };
 		9EBEF03D20EDE63800662EDD /* TweetDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EBEF03C20EDE63800662EDD /* TweetDetailsViewController.m */; };
+		9EF6A8D520EED0E80075B247 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EF6A8D420EED0E80075B247 /* ProfileViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,8 @@
 		9EA1CE1020EAF46A00C88212 /* ComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		9EBEF03B20EDE63800662EDD /* TweetDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TweetDetailsViewController.h; sourceTree = "<group>"; };
 		9EBEF03C20EDE63800662EDD /* TweetDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TweetDetailsViewController.m; sourceTree = "<group>"; };
+		9EF6A8D320EED0E80075B247 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		9EF6A8D420EED0E80075B247 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +157,8 @@
 				9EA1CE1020EAF46A00C88212 /* ComposeViewController.m */,
 				9EBEF03B20EDE63800662EDD /* TweetDetailsViewController.h */,
 				9EBEF03C20EDE63800662EDD /* TweetDetailsViewController.m */,
+				9EF6A8D320EED0E80075B247 /* ProfileViewController.h */,
+				9EF6A8D420EED0E80075B247 /* ProfileViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -288,6 +293,7 @@
 				6AD2790620BCC0380085BC29 /* LoginViewController.m in Sources */,
 				6AD278DA20BC4B950085BC29 /* AppDelegate.m in Sources */,
 				6AD278F620BCB68B0085BC29 /* APIManager.m in Sources */,
+				9EF6A8D520EED0E80075B247 /* ProfileViewController.m in Sources */,
 				6AD2790920BCC04D0085BC29 /* TimelineViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,6 +11,7 @@
 #import "ComposeViewController.h"
 #import "LoginViewController.h"
 #import "TweetDetailsViewController.h"
+#import "ProfileViewController.h"
 #import "TweetCell.h"
 #import "APIManager.h"
 #import "AppDelegate.h"
@@ -110,6 +111,12 @@
         viewController.delegate = sender;
         viewController.timelineDelegate = self;
         [viewController setTweet:cell.tweet];
+    }
+    else if([segue.identifier isEqualToString:@"profileSegue"])
+    {
+        ProfileViewController* viewController = (ProfileViewController*)[segue destinationViewController];
+        User* user = [[APIManager shared] currentUser];
+        viewController.user = user;
     }
 }
 
