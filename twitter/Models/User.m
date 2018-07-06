@@ -23,9 +23,19 @@
         self.followingCount = [dictionary[@"friends_count"] intValue];
         self.followersCount = [dictionary[@"followers_count"] intValue];
         
+        // since using the Twitter API it converts 'nil' values to 'NSNull', check if it exists using the 'isKindOfClass' method
         // set URLs
-        self.profileImageURL = [NSURL URLWithString:dictionary[@"profile_image_url_https"]];
-        self.backgroundImageURL = [NSURL URLWithString:dictionary[@"profile_background_image_url_https"]];
+        NSString* profileImageURLString = dictionary[@"profile_image_url"];
+        if(profileImageURLString)
+        {
+            self.profileImageURL = [NSURL URLWithString:profileImageURLString];
+        }
+        
+        NSString* backgroundImageURLString = dictionary[@"profile_background_image_url"];
+        if(![backgroundImageURLString isKindOfClass:[NSNull class]])
+        {
+            self.backgroundImageURL = [NSURL URLWithString:backgroundImageURLString];
+        }
     }
     
     return self;

@@ -8,6 +8,7 @@
 
 #import "ProfileViewController.h"
 #import "ComposeViewController.h"
+#import "TweetDetailsViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "Tweet.h"
 #import "TweetCell.h"
@@ -122,15 +123,31 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    UINavigationController* navigationController = [segue destinationViewController];
-    ComposeViewController* viewController = (ComposeViewController*)navigationController.topViewController;
-    
-    viewController.delegate = self;
-    
-    // get the cell using the sender (button). The button's superview is the contentview, and the contentview's superview is the cell.
-    TweetCell* cell = (TweetCell*)[[sender superview] superview];
-    viewController.isCompose = NO;
-    viewController.replyingTo = cell.tweet;
+    if([segue.identifier isEqualToString:@"replySegue"])
+    {
+        UINavigationController* navigationController = [segue destinationViewController];
+        ComposeViewController* viewController = (ComposeViewController*)navigationController.topViewController;
+        APIManager* apiManager = [APIManager shared];
+        
+        // set viewcontroller info
+        viewController.name = apiManager.currentUser.name;
+        viewController.handle = apiManager.currentUser.handle;
+        viewController.url = apiManager.currentUser.profileImageURL;
+        viewController.delegate = self;
+        
+        // get the cell using the sender (button). The button's superview is the contentview, and the contentview's superview is the cell.
+        TweetCell* cell = (TweetCell*)[[sender superview] superview];
+        viewController.isCompose = NO;
+        viewController.replyingTo = cell.tweet;
+    }
+    else if([segue.identifier isEqualToString:@"detailsSegue"])
+    {
+        TweetDetailsViewController* viewController = (TweetDetailsViewController*)[segue destinationViewController];
+        TweetCell* cell = (TweetCell*)sender;
+        viewController.delegate = sender;
+        viewController.timelineDelegate = self;
+        [viewController setTweet:cell.tweet];
+    }
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
