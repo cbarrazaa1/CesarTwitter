@@ -14,9 +14,11 @@
 @interface MentionsViewController () <UITableViewDataSource, UITableViewDelegate>
 // Outlet Definitions //
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 // Instance Properties //
 @property (strong, nonatomic) NSMutableArray<Tweet*>* tweets;
+@property (strong, nonatomic) UIRefreshControl* refreshControl;
 
 @end
 
@@ -29,7 +31,17 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
-    // get mentions
+    // set up refreshcontrol
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchTweets) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    // get timeline again (for when we switch between tabs)
+    [self.activityIndicator startAnimating];
     [self fetchTweets];
 }
 
@@ -45,6 +57,8 @@
         }
         
         [self.tableView reloadData];
+        [self.activityIndicator stopAnimating];
+        [self.refreshControl endRefreshing];
     }];
 }
 

@@ -27,10 +27,12 @@
 @property (weak, nonatomic) IBOutlet UIView *followingView;
 @property (weak, nonatomic) IBOutlet UIView *followersView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 // Instance Properties //
 @property (strong, nonatomic) NSMutableArray<Tweet*>* tweets;
 @property (strong, nonatomic) User* user;
+@property (strong, nonatomic) UIRefreshControl* refreshControl;
 
 @end
 
@@ -77,17 +79,14 @@
                              }
                              
                              [self.tableView reloadData];
-                            // [self.activityIndicator stopAnimating];
-                            // [self.refreshControl endRefreshing];
+                             [self.activityIndicator stopAnimating];
+                             [self.refreshControl endRefreshing];
                          }
      ];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // update user object
-    [[APIManager shared] getCurrentUser];
-    self.user = [[APIManager shared] currentUser];
    
     // update UI
     [self updateUI];
@@ -95,12 +94,29 @@
     // set up tableview
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    [self fetchTweets];
+    
+    // set up refreshcontrol
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchTweets) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    // update user object
+    [[APIManager shared] getCurrentUser];
+    self.user = [[APIManager shared] currentUser];
+    
+    // get timeline again (for when we switch between tabs)
+    [self.activityIndicator startAnimating];
+    [self fetchTweets];
+    [self updateUI];
 }
 
 #pragma mark - Navigation

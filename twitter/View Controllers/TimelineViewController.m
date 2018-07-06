@@ -43,8 +43,12 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchTweets) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
-    // get timeline
+    // get timeline again (for when we switch between tabs)
     [self.activityIndicator startAnimating];
     [self fetchTweets];
 }
