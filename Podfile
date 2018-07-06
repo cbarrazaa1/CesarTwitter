@@ -9,6 +9,7 @@ target 'twitter' do
   pod 'AFNetworking'
   pod 'BDBOAuth1Manager'
   pod 'DateTools'
+  pod 'KILabel', '1.0.0'
 end
 
 post_install do |installer|

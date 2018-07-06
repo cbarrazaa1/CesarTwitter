@@ -10,12 +10,13 @@
 #import "TweetDetailsViewController.h"
 #import "ComposeViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import <KILabel.h>
 
 @interface TweetDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *profilePicture;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *handleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+@property (weak, nonatomic) IBOutlet KILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *retweetCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *favoriteCountLabel;
@@ -98,6 +99,23 @@
     // set round image
     self.profilePicture.layer.masksToBounds = YES;
     self.profilePicture.layer.cornerRadius = (self.profilePicture.frame.size.width / 2);
+    
+    // set KILabel
+    self.contentLabel.urlLinkTapHandler = ^(KILabel *label, NSString *string, NSRange range)
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:string]];
+    };
+    
+    self.contentLabel.userHandleLinkTapHandler = ^(KILabel* label, NSString* string, NSRange range)
+    {
+        NSString* actualHandle = [string substringFromIndex:1];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[@"https://twitter.com/" stringByAppendingString:actualHandle]]];
+    };
+    
+    self.contentLabel.hashtagLinkTapHandler = ^(KILabel * _Nonnull label, NSString * _Nonnull string, NSRange range) {
+        NSString* actualHashtag = [string substringFromIndex:1];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[@"https://twitter.com/hashtag/" stringByAppendingString:actualHashtag]]];
+    };
     
     [self updateUI];
 }

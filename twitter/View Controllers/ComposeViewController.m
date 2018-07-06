@@ -9,6 +9,7 @@
 #import "ComposeViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "APIManager.h"
+#import <KILabel.h>
 
 @interface ComposeViewController ()
 // Outlet Definitions //
@@ -16,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel* nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel* handleLabel;
 @property (weak, nonatomic) IBOutlet UITextView* composeTextfield;
-@property (weak, nonatomic) IBOutlet UILabel *replyLabel;
+@property (weak, nonatomic) IBOutlet KILabel *replyLabel;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *topBarRightButton;
 
 @end
@@ -49,6 +50,12 @@
         self.replyLabel.text = [NSString stringWithFormat:@"Replying to @%@", self.replyingTo.user.handle];
         [self.topBarRightButton setTitle:@"Reply"];
     }
+    
+    self.replyLabel.userHandleLinkTapHandler = ^(KILabel* label, NSString* string, NSRange range)
+    {
+        NSString* actualHandle = [string substringFromIndex:1];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[@"https://twitter.com/" stringByAppendingString:actualHandle]]];
+    };
 }
 
 - (void)didReceiveMemoryWarning {
