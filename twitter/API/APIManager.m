@@ -92,6 +92,23 @@ static NSString * const consumerSecret = @"RoMopDnGDjTBJlrGIFaml7YWiQRHevjAcWJZK
      ];
 }
 
+- (void)getUserWithHandle:(NSString *)handle completion:(void (^)(User *, NSError *))completion {
+    NSString* url = @"1.1/users/show.json";
+    NSDictionary* parameters = @{@"screen_name": handle};
+    
+    [self GET:url parameters:parameters progress:nil
+      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         User* user = [[User alloc] initWithDictionary:(NSDictionary*)responseObject];
+         completion(user, nil);
+     }
+      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+     {
+         completion(nil, error);
+     }
+     ];
+}
+
 - (void)getMentions:(void (^)(NSArray<Tweet *> *, NSError *))completion {
     NSString* url = @"1.1/statuses/mentions_timeline.json";
     NSDictionary* parameters = nil;

@@ -80,12 +80,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="156.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2KD-cC-YKq">
+                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2KD-cC-YKq">
                                                     <rect key="frame" x="10" y="17" width="64" height="64"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="64" id="CbI-rb-l9k"/>
                                                         <constraint firstAttribute="width" constant="64" id="IT0-Jq-xMI"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="MZ3-Ys-5t2" appends="YES" id="4Xh-FI-OHf"/>
+                                                    </connections>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="@cbarraza" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZu-bP-TDV">
                                                     <rect key="frame" x="182" y="19" width="69" height="17"/>
@@ -229,11 +233,17 @@
                     <connections>
                         <outlet property="activityIndicator" destination="1HS-zc-Bfs" id="ra4-R4-YDC"/>
                         <outlet property="tableView" destination="XYy-Sn-GpN" id="mEF-ic-jvT"/>
+                        <segue destination="ASi-bI-58U" kind="show" identifier="profileImageSegue" id="Dgv-b1-ZbW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQh-hN-GQg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="MZ3-Ys-5t2">
+                    <connections>
+                        <action selector="didTapPicture:" destination="Lbl-k5-U4i" id="abc-m4-F36"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-1863" y="978"/>
+            <point key="canvasLocation" x="-1863" y="976"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="pkf-e6-S30">
@@ -1103,7 +1113,8 @@
         <image name="retweet-icon" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7tS-Oh-S2I"/>
-        <segue reference="fBL-yV-qBh"/>
+        <segue reference="TFx-im-DzW"/>
+        <segue reference="Dgv-b1-ZbW"/>
+        <segue reference="Opt-V7-K4U"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -32,7 +32,6 @@
 
 // Instance Properties //
 @property (strong, nonatomic) NSMutableArray<Tweet*>* tweets;
-@property (strong, nonatomic) User* user;
 @property (strong, nonatomic) UIRefreshControl* refreshControl;
 
 @end
@@ -67,7 +66,7 @@
 }
 
 - (void)fetchTweets {
-    [[APIManager shared] getUserTimeline:[[APIManager shared] currentUser]
+    [[APIManager shared] getUserTimeline:self.user
                          completion:^(NSArray<Tweet*>* tweets, NSError* error)
                          {
                              if (tweets)
@@ -110,10 +109,12 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    // update user object
-    [[APIManager shared] getCurrentUser];
-    self.user = [[APIManager shared] currentUser];
-    
+    if(!self.isAnotherUser)
+    {
+        [[APIManager shared] getCurrentUser];
+        self.user = [[APIManager shared] currentUser];
+    }
+
     // get timeline again (for when we switch between tabs)
     [self.activityIndicator startAnimating];
     [self fetchTweets];

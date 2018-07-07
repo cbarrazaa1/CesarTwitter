@@ -110,6 +110,13 @@
         viewController.timelineDelegate = self;
         [viewController setTweet:cell.tweet];
     }
+    else if([segue.identifier isEqualToString:@"profileImageSegue"])
+    {
+        ProfileViewController* viewController = (ProfileViewController*)[segue destinationViewController];
+        TweetCell* cell = (TweetCell*)[[[((UIGestureRecognizer*)sender) view] superview] superview];
+        viewController.user = cell.tweet.user;
+        viewController.isAnotherUser = YES;
+    }
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -145,4 +152,10 @@
     // clear login tokens
     [[APIManager shared] logout];
 }
+
+- (IBAction)didTapPicture:(id)sender {
+    [self performSegueWithIdentifier:@"profileImageSegue" sender:sender];
+}
+
+
 @end

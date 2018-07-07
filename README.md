@@ -2,7 +2,7 @@
 
 **CesarTwitter** is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
-Time spent: **15** hours spent in total
+Time spent: **16** hours spent in total
 
 ## User Stories
 
@@ -29,7 +29,7 @@ The following **optional** features are implemented:
 - [X] User should display the relative timestamp for each tweet "8m", "7h"
 - [X] User should be able to unretweet and unfavorite and should decrement the retweet and favorite count. Refer to [[this guide|unretweeting]] for help on implementing unretweeting.
 - [X] Links in tweets are clickable.
-- [ ] User can tap the profile image in any tweet to see another user's profile
+- [X] User can tap the profile image in any tweet to see another user's profile
 - Contains the user header view: picture and tagline
 - Contains a section with the users basic stats: # tweets, # following, # followers
 - [ ] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
@@ -47,14 +47,14 @@ The following **additional** features are implemented:
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. At first, understanding how the API managers is pretty hard.
+2. Autolayout is very hard to understand.
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-![alt text](https://github.com/cbarrazaa1/CesarTwitter/blob/master/twitterv1.gif "Logo Title Text 1")
+![alt text](https://github.com/cbarrazaa1/CesarTwitter/blob/master/twitter%20final.gif "Logo Title Text 1")
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 

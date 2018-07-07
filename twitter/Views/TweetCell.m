@@ -303,4 +303,5 @@
     self.tweet = tweet;
     [self updateUI];
 }
+
 @end

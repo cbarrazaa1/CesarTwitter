@@ -11,5 +11,7 @@
 #import "ComposeViewController.h"
 
 @interface ProfileViewController : UIViewController
-
+// Instance Properties //
+@property (strong, nonatomic) User* user;
+@property (nonatomic) BOOL isAnotherUser;
 @end
